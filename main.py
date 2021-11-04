@@ -41,7 +41,9 @@ def getKeyInput():
     if kp.getKey("q"): yv = me.takeoff()
     if kp.getKey("e"): yv = me.land()
 
-    if kp.getKey("z"): cv2.imwrite(f'Resources/Images/{time.time()}.png',img)
+    if kp.getKey("z"):
+        cv2.imwrite(f'Resources/Images/{time.time()}.png',img)
+        time.sleep (0.5)
 
 
     return [lr, fb, ud, yv]
