@@ -10,10 +10,11 @@ me.connect()
 print(me.get_battery())
 global img
 me.streamon()
+#me.takeoff()
 
 
 def getKeyInput():
-    lr, fb, ud, yv = 0, 0, 0, 0
+    lr, fb, ud, yv, tk = 0, 0, 0, 0, 0
     speed = 20
 
     if kp.getKey("a"):
@@ -38,15 +39,15 @@ def getKeyInput():
     elif kp.getKey("RIGHT"):
         yv = -speed
 
-    if kp.getKey("q"): yv = me.takeoff()
-    if kp.getKey("e"): yv = me.land()
+    if kp.getKey("q"): tk = me.takeoff()
+    if kp.getKey("e"): tk = me.land()
 
     if kp.getKey("z"):
         cv2.imwrite(f'Resources/Images/{time.time()}.png',img)
         time.sleep (0.5)
 
 
-    return [lr, fb, ud, yv]
+    return [lr, fb, ud, yv, tk]
 
 
 while True:
