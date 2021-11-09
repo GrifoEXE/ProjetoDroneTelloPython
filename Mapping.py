@@ -108,7 +108,17 @@ while True:
 
     vals = [0, 0, 0, 50]
     me.send_rc_control(vals[0], vals[1], vals[2], vals[3])
-    sleep(11)
+
+
+    sleep(10.2)
+
+    vals = [0, 0, 0, 0]
+    me.send_rc_control(vals[0], vals[1], vals[2], vals[3])
+    sleep(1.5)
+
+    vals = [0, -50, 0, 0]
+    me.send_rc_control(vals[0], vals[1], vals[2], vals[3])
+    sleep(2)
 
     vals = [0, 0, 0, 0]
     me.send_rc_control(vals[0], vals[1], vals[2], vals[3])
