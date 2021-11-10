@@ -25,10 +25,55 @@ me.connect()
 print(me.get_battery())
 me.streamon()
 
-points = []
+vals = []
 
 me.takeoff()
-sleep(3)
+boolean = False
+sleep(3.0)
+
+
+vals = [0, 50, 0, 0]  # ir para frente
+me.send_rc_control(vals[0], vals[1], vals[2], vals[3])
+sleep(2.5)
+
+
+vals = [0, 0, 0, 0]  # PARADA
+me.send_rc_control(vals[0], vals[1], vals[2], vals[3])
+sleep(2.0)
+
+vals = [0, 0, 0, 25]  # girar
+me.send_rc_control(vals[0], vals[1], vals[2], vals[3])
+sleep(1.50)
+
+vals = [0, 0, 0, 0]  # PARADA
+me.send_rc_control(vals[0], vals[1], vals[2], vals[3])
+sleep(2.0)
+
+vals = [0, 0, 0, -25]  # girar
+me.send_rc_control(vals[0], vals[1], vals[2], vals[3])
+sleep(3.0)
+
+vals = [0, 0, 0, 0]  # PARADA
+me.send_rc_control(vals[0], vals[1], vals[2], vals[3])
+sleep(2.0)
+
+vals = [0, 0, 0, 25]  # girar de volta
+me.send_rc_control(vals[0], vals[1], vals[2], vals[3])
+sleep(1.7)
+
+vals = [0, 0, 0, 0]  # PARADA
+me.send_rc_control(vals[0], vals[1], vals[2], vals[3])
+sleep(2.0)
+
+vals = [0, -50, 0, 0]  # VOLTA
+me.send_rc_control(vals[0], vals[1], vals[2], vals[3])
+sleep(2.0)
+
+vals = [0, 0, 0, 0]  # PARADA
+me.send_rc_control(vals[0], vals[1], vals[2], vals[3])
+sleep(1.5)
+
+me.land()
 
 
 def getKeyInput():
@@ -95,33 +140,4 @@ def getKeyInput():
 
     return [lr, fb, ud, yv, x, y, tk]
 
-while True:
-    #vals = getKeyInput()
 
-    vals = [0, 50, 0, 0]
-    me.send_rc_control(vals[0], vals[1], vals[2], vals[3])
-    sleep(2)
-
-    vals = [0, 0, 0, 0]
-    me.send_rc_control(vals[0], vals[1], vals[2], vals[3])
-    sleep(1.5)
-
-    vals = [0, 0, 0, 50]
-    me.send_rc_control(vals[0], vals[1], vals[2], vals[3])
-
-
-    sleep(10.2)
-
-    vals = [0, 0, 0, 0]
-    me.send_rc_control(vals[0], vals[1], vals[2], vals[3])
-    sleep(1.5)
-
-    vals = [0, -50, 0, 0]
-    me.send_rc_control(vals[0], vals[1], vals[2], vals[3])
-    sleep(2)
-
-    vals = [0, 0, 0, 0]
-    me.send_rc_control(vals[0], vals[1], vals[2], vals[3])
-    sleep(1.5)
-
-    me.land()
