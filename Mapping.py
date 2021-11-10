@@ -6,6 +6,12 @@ import time
 import cv2
 import math
 
+from Communication_Serial import classSerial
+
+teste = classSerial()
+teste.Start()
+teste.process()
+
 ####### PARAMETERS #######
 fSpeed = 117/10 # Forward Speed in cm/s (15cm/s)
 aSpeed = 360/10 # Angular Speed in degrees/s

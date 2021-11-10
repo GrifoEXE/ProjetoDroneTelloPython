@@ -1,6 +1,7 @@
 from serial import Serial
 
-class Class_Serial:
+
+class classSerial:
     var_serial = Serial('COM3', 115200)
     tempText = ""
 
@@ -23,10 +24,10 @@ class Class_Serial:
 
             for c in text:
                 if c == "\n":
-                    self.text_received(tempText)
-                    tempText = ""
+                    self.text_received(self.tempText)
+                    self.tempText = ""
                 else:
-                    tempText += c
+                    self.tempText += c
 
     @staticmethod
     def text_received(text):
