@@ -9,6 +9,7 @@ class classSerial:
         self.Close()
         self.Open()
         self.Process()
+        return True
 
     def Open(self):
         self.var_serial.open()
@@ -18,20 +19,13 @@ class classSerial:
 
     def Process(self):
 
-        global tempText
-        while True:
-            text = self.var_serial.readline()
+        tempText = ""
+        text = self.var_serial.readline()
+        for c in text:
+            if c != "\n":
+                self.tempText += str(c)
 
-            for c in text:
-                if c == "\n":
-                    self.text_received(self.tempText)
-                    self.tempText = ""
-                else:
-                    self.tempText += c
+        array_text = self.tempText.split(" ")
+        print(array_text)
+        return True
 
-    @staticmethod
-    def text_received(text):
-        array_text = text.split(' ')
-
-        if array_text[1] == "Detected":
-            print(array_text[1])
