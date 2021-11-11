@@ -37,6 +37,8 @@ def getKeyInput():
     if kp.getKey("q"): yv = me.takeoff()
     if kp.getKey("e"): yv = me.land()
 
+
+
     return [lr, fb, ud, yv]
 
 

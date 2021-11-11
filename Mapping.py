@@ -5,17 +5,17 @@ from time import sleep
 import time
 import cv2
 import math
+import Communication_Serial
 
-from Communication_Serial import classSerial
+test = Communication_Serial
 
-teste = classSerial()
-teste.Start()
-teste.Process()
+test.__init__()
 
 kp.init()
 me = tello.Tello()
 me.connect()
 print(me.get_battery())
+global img
 
 
 ####### PARAMETERS #######
@@ -40,7 +40,7 @@ if(teste.Process()):
 
     vals = [0, 50, 0, 0]  # ir para frente
     me.send_rc_control(vals[0], vals[1], vals[2], vals[3])
-    sleep(2.5)
+    sleep(1.7)
 
     vals = [0, 0, 0, 0]  # PARADA
     me.send_rc_control(vals[0], vals[1], vals[2], vals[3])
@@ -52,8 +52,6 @@ if(teste.Process()):
 
     vals = [0, 0, 0, 0]  # PARADA COM FOTO
     me.send_rc_control(vals[0], vals[1], vals[2], vals[3])
-   # cv2.imwrite(f'Resources/Images/{time.time()}.png',img)
-    #time.sleep (0.5)
     sleep(2.0)
 
     vals = [0, 0, 0, -25]  # girar
@@ -74,10 +72,17 @@ if(teste.Process()):
 
     vals = [0, -50, 0, 0]  # VOLTA
     me.send_rc_control(vals[0], vals[1], vals[2], vals[3])
-    sleep(2.0)
+    sleep(2.2)
 
     vals = [0, 0, 0, 0]  # PARADA
     me.send_rc_control(vals[0], vals[1], vals[2], vals[3])
     sleep(1.5)
 
     me.land()
+    sleep(1.5)
+
+while True:
+    img = me.get_frame_read().frame
+    img = cv2.resize(img,(1000, 800))
+    cv2.imshow("Image", img)
+    cv2.waitKey(0.5)
