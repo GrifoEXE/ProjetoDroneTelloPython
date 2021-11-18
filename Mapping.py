@@ -7,13 +7,10 @@ import cv2
 import math
 import Communication_Serial
 
-test = Communication_Serial
+test = Communication_Serial.classSerial()
 
-test.__init__()
-
-kp.init()
 me = tello.Tello()
-me.connect()
+me.connect() #Drone
 print(me.get_battery())
 global img
 
@@ -31,16 +28,19 @@ a = 0
 yaw = 0
 
 
+print("Startando Communication_Serial")
+test.Start()
 
 vals = []
 
-if(teste.Process()):
+if(test.Process()):
     me.takeoff()
-    sleep(3.0)
+    sleep(7.0)
+
 
     vals = [0, 50, 0, 0]  # ir para frente
     me.send_rc_control(vals[0], vals[1], vals[2], vals[3])
-    sleep(1.7)
+    sleep(2.2)
 
     vals = [0, 0, 0, 0]  # PARADA
     me.send_rc_control(vals[0], vals[1], vals[2], vals[3])
@@ -56,7 +56,7 @@ if(teste.Process()):
 
     vals = [0, 0, 0, -25]  # girar
     me.send_rc_control(vals[0], vals[1], vals[2], vals[3])
-    sleep(3.0)
+    sleep(3.7)
 
     vals = [0, 0, 0, 0]  # PARADA COM FOTO
     me.send_rc_control(vals[0], vals[1], vals[2], vals[3])

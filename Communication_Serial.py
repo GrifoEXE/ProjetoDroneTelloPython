@@ -2,8 +2,7 @@ from serial import Serial
 
 
 class classSerial:
-    var_serial = Serial('COM3', 115200)
-    tempText = ""
+    port_serial = Serial('COM3', 115200)
 
     def Start(self):
         self.Close()
@@ -11,21 +10,24 @@ class classSerial:
         self.Process()
 
     def Open(self):
-        self.var_serial.open()
+        self.port_serial.open()
 
     def Close(self):
-        self.var_serial.close()
+        self.port_serial.close()
 
     def Process(self):
-        self.var_serial.inWaiting()
-        text = self.var_serial.readline()
-        for c in text:
-            if c == "\n":
-                self.tempText = ""
-            else:
-                self.tempText += str(c)
+        self.textTemp = ""
 
-        array_text = self.tempText.split(" ")
-        print(array_text[1])
-       # return True
+        t = self.port_serial.readline()
+        temp = t.decode('utf-8')
+
+        for c in temp:
+            if c != "\n":
+                self.textTemp += str(c)
+
+        if self.textTemp == "Mensagem: Detected":
+            print(self.textTemp)
+            return True
+        else:
+            return False
 
